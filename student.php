@@ -210,7 +210,7 @@ echo $errormsg;
 							<fieldset class="scheduler-border" >
 						 <legend  class="scheduler-border">Información de Tarifas:</legend>
 						<div class="form-group">
-								<label class="col-sm-2 control-label" for="Old">Tarifas Totales* </label>
+								<label class="col-sm-2 control-label" for="Old">Total Adeudado* </label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="fees" name="fees" value="<?php echo $fees;?>" <?php echo ($action=="update")?"disabled":""; ?>  />
 								</div>

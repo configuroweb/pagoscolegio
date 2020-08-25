@@ -678,17 +678,17 @@ test( "option: errorClass with multiple classes", function() {
 
 test( "defaultMessage(), empty title is ignored", function() {
 	var v = $( "#userForm" ).validate();
-	equal( v.defaultMessage( $( "#username" )[ 0 ], { method: "required", parameters: true } ), "This field is required." );
+	equal( v.defaultMessage( $( "#username" )[ 0 ], { method: "required", parameters: true } ), "Este campo es requerido" );
 } );
 
 test( "#741: move message processing from formatAndAdd to defaultMessage", function() {
 	var v = $( "#testForm22" ).validate();
 	equal( v.defaultMessage( $( "#tF22Input" )[ 0 ], { method: "minlength", parameters: 5 } ),
-		"You should enter at least 5 characters.", "defaultMessage() now format the messages" );
+		"Debes ingresar al menos 5 caracteres.", "defaultMessage() now format the messages" );
 
 	$( "#tF22Input" ).val( "abc" );
 	v.form();
-	equal( v.errorList[ 0 ].message, "You should enter at least 5 characters." );
+	equal( v.errorList[ 0 ].message, "Debes ingresar al menos 5 caracteres" );
 } );
 
 test( "formatAndAdd", function() {
@@ -697,14 +697,14 @@ test( "formatAndAdd", function() {
 		fakeElement = { form: $( "#form" )[ 0 ], name: "bar" };
 
 	v.formatAndAdd( fakeElement, { method: "maxlength", parameters: 2 } );
-	equal( v.errorList[ 0 ].message, "Please enter no more than 2 characters." );
+	equal( v.errorList[ 0 ].message, "No ingrese más de 2 caracteres." );
 	equal( v.errorList[ 0 ].element.name, "bar" );
 
 	v.formatAndAdd( fakeElement, { method: "range", parameters: [ 2, 4 ] } );
-	equal( v.errorList[ 1 ].message, "Please enter a value between 2 and 4." );
+	equal( v.errorList[ 1 ].message, "Ingrese un valor entre 2 y 4." );
 
 	v.formatAndAdd( fakeElement, { method: "range", parameters: [ 0, 4 ] } );
-	equal( v.errorList[ 2 ].message, "Please enter a value between 0 and 4." );
+	equal( v.errorList[ 2 ].message, "Ingrese un valor entre 0 y 4." );
 } );
 
 test( "formatAndAdd2", function() {
@@ -715,10 +715,10 @@ test( "formatAndAdd2", function() {
 	jQuery.validator.messages.test1 = function( param, element ) {
 		equal( this, v );
 		equal( param, 0 );
-		return "element " + element.name + " is not valid";
+		return "element " + element.name + " no es valido";
 	};
 	v.formatAndAdd( fakeElement, { method: "test1", parameters: 0 } );
-	equal( v.errorList[ 0 ].message, "element bar is not valid" );
+	equal( v.errorList[ 0 ].message, "la barra de elementos no es válida" );
 } );
 
 test( "formatAndAdd, auto detect substitution string", function() {
@@ -731,13 +731,13 @@ test( "formatAndAdd, auto detect substitution string", function() {
 		},
 		messages: {
 			firstnamec: {
-				rangelength: "at least ${0}, up to {1}"
+				rangelength: "al menos $ {0}, hasta {1}"
 			}
 		}
 	} );
 	$( "#firstnamec" ).val( "abc" );
 	v.form();
-	equal( v.errorList[ 0 ].message, "at least 5, up to 10" );
+	equal( v.errorList[ 0 ].message, "al menos 5, hasta 10" );
 } );
 
 asyncTest( "option invalidHandler", function() {
